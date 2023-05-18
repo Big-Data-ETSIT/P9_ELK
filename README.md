@@ -45,9 +45,9 @@ cd ./P9_ELK
 
 Iniciar el los uno a uno los componentes del stack de ELK. Para ello las versiones que se deben descargar son las siguientes:
 
-ElasticSearch 8.7.1
-Logstash 8.7.1
-Kibana 8.7.1
+- ElasticSearch 8.7.1
+- Logstash 8.7.1
+- Kibana 8.7.1
 
 ### Inicialización de ElasticSearch:
 
