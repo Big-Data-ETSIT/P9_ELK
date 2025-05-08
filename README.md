@@ -49,26 +49,38 @@ Iniciar uno a uno los componentes del stack de ELK. Para ello las versiones que 
 - Logstash 8.7.1
 - Kibana 8.7.1
 
-### Inicialización de ElasticSearch:
+### Inicialización de ElasticSearch y Kibana:
 
-Una vez que se haya descargado dicho componente, abrir un terminal y  cambiar al directorio donde se encuentran elasticsearch y luego ejecutar los siguientes comandos:
+Abrir un terminal y  cambiar al directorio donde se encuentran elasticsearch y luego ejecutar los siguientes comandos:
 
 
 ```
-cd elasticsearch
-bin/elasticsearch
+curl -fsSL https://elastic.co/start-local | sh
 ```
 Dicho comando iniciará una instancia de elasticsearch de forma predeterminada en `http://localhost:9200` y proveerá de un usuario, contraseña y un token que debemos guardar para posteriormente autenticar nuestra instancia de kibana y logstash
 
-### Inicializar Kibana:
+En el caso de Kibana la salida de dicho comando proveerá entre otras cosas la URL de acceso a la plataforma web que suele ser de forma predeterminada `http://localhost:5601` 
 
-Para arrancar Kibana, es necesario ejecutar el siguiente comando en una nueva terminal usando como directorio de trabajo la carpeta raíz de la instalación de Kibana:
+Las claves de acceso se encuentran en el firero .env del directorio `elastic-start-local`
+
+Los comandos para detener y re arrancar el entorno son:
 
 ```
-cd kibana
-bin/kibana
+cd elastic-start-local
+./stop.sh
 ```
-La salida de dicho comando proveerá entre otras cosas la URL de acceso a la plataforma web que suele ser de forma predeterminada `http://localhost:5601` 
+```
+cd elastic-start-local
+./start.sh
+```
+
+y para desinstálar todo :
+
+```
+cd elastic-start-local
+./uninstall.sh
+```
+
 
 
 ### Iniciar Logstash
@@ -86,8 +98,6 @@ Posterioemente debemos añadir el password generado en elastic search para nuest
 ```
 elasticsearch {
         hosts => [ "https://localhost:9200" ]
-
-        ssl_certificate_verification => false
 
         user => "elastic"
 
